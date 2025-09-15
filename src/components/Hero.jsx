@@ -3,30 +3,19 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Brain, Code, Gamepad2 } from "lucide-react";
-import { useNavigate, useLocation } from "react-router-dom";
 
 const Hero = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  
   const scrollToSection = (sectionId) => {
-    // If we're on the portfolio page, navigate to home first
-    if (location.pathname === '/portfolio') {
-      navigate('/');
-      // Wait a bit for navigation to complete, then scroll
-      setTimeout(() => {
-        const section = document.getElementById(sectionId);
-        if (section) {
-          section.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
-      }, 100);
-    } else {
-      // We're on home page, just scroll
+    // First, navigate to home page with hash
+    window.location.hash = `#/`;
+    
+    // Then scroll to the section after a brief delay
+    setTimeout(() => {
       const section = document.getElementById(sectionId);
       if (section) {
         section.scrollIntoView({ behavior: "smooth", block: "start" });
       }
-    }
+    }, 300);
   };
   
   const scrollToAbout = () => scrollToSection("about");
