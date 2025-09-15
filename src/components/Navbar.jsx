@@ -5,10 +5,11 @@ import { motion } from "framer-motion";
 import NetflixLogo from "@/components/NetflixLogo";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Home } from "lucide-react";
+import { Home, Menu, X } from "lucide-react";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const isPortfolioPage = location.pathname === "/portfolio";
 
@@ -51,17 +52,36 @@ const Navbar = () => {
           {isPortfolioPage && (
             <nav className="hidden md:flex space-x-8">
               {["Home", "About", "Experience", "Projects", "Skills", "Contact"].map((item) => (
-                <motion.a
+                <motion.button
                   key={item}
-                  href={`#${item.toLowerCase()}`}
-                  className="text-netflix-light hover:text-white transition-colors"
+                  onClick={() => {
+                    const element = document.getElementById(item.toLowerCase());
+                    if (element) {
+                      element.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'nearest',
+                        inline: 'center'
+                      });
+                    }
+                  }}
+                  className="text-netflix-light hover:text-white transition-colors cursor-pointer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   {item}
-                </motion.a>
+                </motion.button>
               ))}
             </nav>
+          )}
+          
+          {/* Mobile Navigation Button */}
+          {isPortfolioPage && (
+            <button
+              className="md:hidden text-netflix-light hover:text-white"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           )}
           
           <div className="flex items-center space-x-4">
@@ -69,7 +89,16 @@ const Navbar = () => {
               <Button 
                 variant="ghost" 
                 className="text-netflix-light hover:text-white hidden sm:block"
-                onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
+                onClick={() => {
+                  const element = document.getElementById('contact');
+                  if (element) {
+                    element.scrollIntoView({ 
+                      behavior: 'smooth', 
+                      block: 'nearest',
+                      inline: 'center'
+                    });
+                  }
+                }}
               >
                 Connect
               </Button>
@@ -89,6 +118,55 @@ const Navbar = () => {
             </Avatar>
           </div>
         </div>
+        
+        {/* Mobile Navigation Menu */}
+        {isPortfolioPage && mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden bg-netflix-black border-t border-netflix-gray"
+          >
+            <nav className="px-4 py-4 space-y-4">
+              {["Home", "About", "Experience", "Projects", "Skills", "Contact"].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => {
+                    const element = document.getElementById(item.toLowerCase());
+                    if (element) {
+                      element.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'nearest',
+                        inline: 'center'
+                      });
+                    }
+                    setMobileMenuOpen(false);
+                  }}
+                  className="block w-full text-left text-netflix-light hover:text-white transition-colors py-2"
+                >
+                  {item}
+                </button>
+              ))}
+              <Button 
+                variant="ghost" 
+                className="w-full text-netflix-light hover:text-white justify-start p-2"
+                onClick={() => {
+                  const element = document.getElementById('contact');
+                  if (element) {
+                    element.scrollIntoView({ 
+                      behavior: 'smooth', 
+                      block: 'nearest',
+                      inline: 'center'
+                    });
+                  }
+                  setMobileMenuOpen(false);
+                }}
+              >
+                Connect
+              </Button>
+            </nav>
+          </motion.div>
+        )}
       </div>
     </motion.header>
   );

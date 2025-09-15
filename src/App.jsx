@@ -1,6 +1,6 @@
 
 import React, { useEffect } from "react";
-import { HashRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import LandingPage from "@/pages/LandingPage";
 import PortfolioPage from "@/pages/PortfolioPage";
@@ -26,8 +26,11 @@ const App = () => {
     document.title = "Vansh Bhatt | Portfolio | CS Student at SFU";
   }, []);
 
+  // Determine basename based on environment
+  const basename = import.meta.env.PROD ? '/personal-portfolio' : '';
+
   return (
-    <Router>
+    <Router basename={basename}>
       <AnimatePresence mode="wait">
         <Routes>
           <Route path="/" element={<PageLayout><LandingPage /></PageLayout>} />
