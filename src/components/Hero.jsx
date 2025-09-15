@@ -3,25 +3,17 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Brain, Code, Gamepad2 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const scrollToSection = (sectionId) => {
-    // First, navigate to home page with hash
-    window.location.hash = `#/`;
-    
-    // Then scroll to the section after a brief delay
     setTimeout(() => {
       const section = document.getElementById(sectionId);
       if (section) {
         section.scrollIntoView({ behavior: "smooth", block: "start" });
       }
-    }, 300);
+    }, 100);
   };
-  
-  const scrollToAbout = () => scrollToSection("about");
-  const scrollToProjects = () => scrollToSection("projects");
-  const scrollToContact = () => scrollToSection("contact");
-  const scrollToExperience = () => scrollToSection("experience");
 
 
   return (
@@ -57,26 +49,29 @@ const Hero = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Button 
-              className="netflix-button text-lg py-6 px-8"
-              onClick={scrollToProjects}
-            >
-             My Projects
-            </Button>
-            <Button 
-              variant="outline" 
-              className="border-netflix-red text-netflix-red hover:bg-netflix-red hover:text-white text-lg py-6 px-8"
-              onClick={scrollToExperience}
-            >
-              Work Experience
-            </Button>
-            <Button 
-              variant="outline" 
-              className="border-netflix-red text-netflix-red hover:bg-netflix-red hover:text-white text-lg py-6 px-8"
-              onClick={scrollToContact}
-            >
-              Let's Connect
-            </Button>
+            <Link to="/" onClick={() => scrollToSection("projects")}>
+              <Button 
+                className="netflix-button text-lg py-6 px-8 w-full"
+              >
+               My Projects
+              </Button>
+            </Link>
+            <Link to="/" onClick={() => scrollToSection("experience")}>
+              <Button 
+                variant="outline" 
+                className="border-netflix-red text-netflix-red hover:bg-netflix-red hover:text-white text-lg py-6 px-8 w-full"
+              >
+                Work Experience
+              </Button>
+            </Link>
+            <Link to="/" onClick={() => scrollToSection("contact")}>
+              <Button 
+                variant="outline" 
+                className="border-netflix-red text-netflix-red hover:bg-netflix-red hover:text-white text-lg py-6 px-8 w-full"
+              >
+                Let's Connect
+              </Button>
+            </Link>
           </div>
 
           <div className="flex justify-center space-x-6 md:space-x-12 text-netflix-light">
@@ -111,15 +106,17 @@ const Hero = () => {
         </motion.div>
       </div>
       
-      <motion.div 
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 1.6 }}
-        onClick={scrollToAbout}
-      >
-        <ChevronDown className="w-10 h-10 text-netflix-light animate-bounce" />
-      </motion.div>
+      <Link to="/">
+        <motion.div 
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 1.6 }}
+          onClick={() => scrollToSection("about")}
+        >
+          <ChevronDown className="w-10 h-10 text-netflix-light animate-bounce" />
+        </motion.div>
+      </Link>
     </section>
   );
 };
