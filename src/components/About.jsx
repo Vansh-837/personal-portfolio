@@ -135,7 +135,7 @@ const About = () => {
               whileHover={{ scale: 1.02 }}
             >
               <a
-                href="/Vansh Bhatt.pdf"
+                href="./Vansh Bhatt.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-between text-netflix-light hover:text-white transition-colors"
@@ -164,7 +164,7 @@ const About = () => {
             Want a detailed overview of my experience and skills?
           </p>
           <motion.a
-            href="/Vansh Bhatt.pdf"
+            href="./Vansh Bhatt.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="netflix-button px-8 py-3 text-lg inline-flex items-center"
