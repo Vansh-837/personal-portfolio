@@ -6,16 +6,6 @@ import { ChevronDown, Brain, Code, Gamepad2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Hero = () => {
-  const scrollToSection = (sectionId) => {
-    setTimeout(() => {
-      const section = document.getElementById(sectionId);
-      if (section) {
-        section.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }, 100);
-  };
-
-
   return (
     <section id="home_content" className="relative h-[calc(100vh-80px)] flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
@@ -49,14 +39,14 @@ const Hero = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <Link to="/" onClick={() => scrollToSection("projects")}>
+            <Link to="/portfolio#projects">
               <Button 
                 className="netflix-button text-lg py-6 px-8 w-full"
               >
                My Projects
               </Button>
             </Link>
-            <Link to="/" onClick={() => scrollToSection("experience")}>
+            <Link to="/portfolio#experience">
               <Button 
                 variant="outline" 
                 className="border-netflix-red text-netflix-red hover:bg-netflix-red hover:text-white text-lg py-6 px-8 w-full"
@@ -64,7 +54,7 @@ const Hero = () => {
                 Work Experience
               </Button>
             </Link>
-            <Link to="/" onClick={() => scrollToSection("contact")}>
+            <Link to="/portfolio#contact">
               <Button 
                 variant="outline" 
                 className="border-netflix-red text-netflix-red hover:bg-netflix-red hover:text-white text-lg py-6 px-8 w-full"
@@ -106,13 +96,12 @@ const Hero = () => {
         </motion.div>
       </div>
       
-      <Link to="/">
+      <Link to="/portfolio#about">
         <motion.div 
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 1.6 }}
-          onClick={() => scrollToSection("about")}
         >
           <ChevronDown className="w-10 h-10 text-netflix-light animate-bounce" />
         </motion.div>

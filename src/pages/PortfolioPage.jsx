@@ -29,8 +29,12 @@ const PortfolioPage = () => {
       if (element) {
         // Wait for layout to settle before scrolling
         setTimeout(() => {
-          element.scrollIntoView({ behavior: "smooth", block: "start" });
-        }, 100);
+          element.scrollIntoView({ 
+            behavior: "smooth", 
+            block: "nearest",
+            inline: "center"
+          });
+        }, 500);
       }
     } else {
        // Scroll to top if no hash

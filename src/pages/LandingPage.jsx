@@ -10,7 +10,7 @@ const profileCards = [
     icon: <Briefcase className="w-12 h-12 text-netflix-red mb-4" />,
     title: "For Recruiters",
     description: "Discover my skills, projects, and experience. See how I can contribute to your team.",
-    link: "/portfolio#home",
+    link: "/portfolio#experience",
     delay: 0.2,
   },
   {
