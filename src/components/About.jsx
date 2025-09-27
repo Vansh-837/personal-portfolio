@@ -28,6 +28,9 @@ const educationData = {
 };
 
 const About = () => {
+  // Update this timestamp whenever you change your resume
+  const resumeVersion = "2025-09-26";
+  
   return (
     <section id="about" className="netflix-section bg-gradient-to-b from-netflix-black to-black">
       <div className="netflix-container">
@@ -135,7 +138,7 @@ const About = () => {
               whileHover={{ scale: 1.02 }}
             >
               <a
-                href="./Vansh Bhatt.pdf"
+                href={`./resume.pdf?v=${resumeVersion}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-between text-netflix-light hover:text-white transition-colors"
@@ -164,7 +167,7 @@ const About = () => {
             Want a detailed overview of my experience and skills?
           </p>
           <motion.a
-            href="./Vansh Bhatt.pdf"
+            href={`./resume.pdf?v=${resumeVersion}`}
             target="_blank"
             rel="noopener noreferrer"
             className="netflix-button px-8 py-3 text-lg inline-flex items-center"
